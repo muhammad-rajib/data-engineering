@@ -1,0 +1,95 @@
+Commands:
+=========
+1. whoami --> print the username currenty logged in to the terminal session
+
+#######################################################
+
+2. man <command> --> To get the manual of any commands
+
+#######################################################
+
+3. clear --> Clear the terminal screen
+4. pwd --> print name of current/working directory
+5. ls --> list directory contents
+   ls -l --> details list of directory contents
+   ls -a --> show .files of directory
+6. cd --> change shell working directory
+   cd .. --> back to the parent directory
+   cd ../../.. --> back to the parent directory as much 		   as you want to back
+   cd ~ --> back to your username directory
+7. mkdir --> create a folder
+   mkdir -p folder1/folder2 --> create multiple nested folder
+8. touch <file-name> --> create an empty file
+9. rmdir <folder-name> --> delete created folder(emtpy)
+10. rm -r <folder/file-name> --> delete folders/files
+11. rm -ri --> delete in an interactive mode
+12. open <file-name> --> open file
+13. mv --> Rename OR Move files and Folders
+14. cp --> copy files and folders
+15. head --> first part of files
+16. tail --> last part of files
+17. date --> return current time
+
+#####################################################
+> save(override) bash data into other storage system
+>> save(append) bash data into other storage system
+ | output pipes 
+#####################################################
+
+18. cat --> concatenate files and print on the standard output
+19. less --> shows the file content in a nice & interactive UI
+20. echo --> prints to the output the argument passed to it
+21. wc --> information about a file or input it receives via pioes
+22. sort --> sort file data
+23. uniq --> unique values from files
+24. diff --> differences of two files
+25. find --> search for files in a directory hierarchy
+    find -type f -size +100k -size -1M
+25. grep --> print lines that match patterns
+    egrep, fgrep, rgrep
+26. du --> estimate file space usage
+27. df --> report file system disk space usage
+28. history --> GNU History Library
+29. ps --> process status
+30. top --> display Linux process
+31. kill <PID> --> send a signal to a process
+    kill -9 <PID>
+32. killall --> kill multiple process
+	--> killall -9 processName/Id
+33. jobs --> list of stopped jobs/services
+34. fg --> resume stopped jobs in forground
+35. bg --> resume stopped jobs in background
+36. sleep --> delay for a specified amount of time
+37. gzip --> compress files
+38. gunzip --> expand files
+39. tar --> an archiving utitity
+40. nano --> beginner friendly editor
+41. alias --> Run a program with a set of options you like using.
+42. xargs --> build and execute command lines from standard input
+43. ln --> makes links between files
+44. who --> show who is logged in
+45. su --> run a command with substitute user and group
+       ID
+46. sudo, sudoedit — execute a command as another user
+47. passwd --> change user password
+48. chown --> change file owner and group
+49. chmod --> change the file mode bits
+50. ncal --> print calender
+
+========================================
+File Type:
+ - regular file
+ d directory
+ c character special file
+ | symbolic link
+========================================
+
+=========================================================
+Permissions
+------------
+r : file can be read
+w : file can be modified
+x : file can be treated as a program to be executed
+- : file cannot be read, modified, or executed depending
+    on the location of the - character
+=========================================================
