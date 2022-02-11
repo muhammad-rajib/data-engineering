@@ -8,7 +8,12 @@ from pymongo import MongoClient
 from pyspark.sql import SparkSession
 
 
-def get_spark_session(dev_mode, app_name):
+def get_spark_session():
+
+    load_dotenv()
+    dev_mode = os.getenv('spark_session_mode')
+    app_name = os.getenv('spark_app_name')
+
     if dev_mode == 'DEV':
         spark = SparkSession. \
             builder. \
@@ -39,7 +44,10 @@ def connect_with_mongodb():
     password = cred_dict['password']
     db_name = cred_dict['db_name']
 
-    mongo_uri = f"mongodb+srv://{user}:{password}@mflix-cluster.buei4.mongodb.net/{db_name}?retryWrites=true&w=majority"
+    mongo_uri = f"mongodb+srv://{cred_dict['user']}:{cred_dict['password']}" \
+                + "@mflix-cluster.buei4.mongodb.net/" \
+                + "{db_name}?retryWrites=true&w=majority"
+
     mongo_client = MongoClient(mongo_uri)
     
     return mongo_client
