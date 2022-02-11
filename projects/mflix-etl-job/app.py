@@ -2,30 +2,25 @@
 Call required functions to complete the ETL Job.
 """
 # import required libraries
-import os
-from dotenv import load_dotenv
-
-from utils import get_spark_session, \
-                    connect_with_mongodb
-from collect_data import collect_mflix_data
-from process_data import create_dataframe, \
-                            process_mflix_data
-from load_data import load_mflix_data
+from utils import get_spark_session
+from collect_data import collect_movies_data_into_list
+from process_data import process_movies_data
+from load_data import load_data_into_warehouse
 
 
 def main():
     
     # create spark session
+    spark = get_spark_session()
 
-    # collect data from mongodb
+    # collect movies data list
+    movies_list = collect_movies_data_into_list()
 
-    # store collected data into dataframe
-
-    # process data followed by requirements
+    # process movies data
+    movies_output_df = process_movies_data(spark, movies_list)
 
     # load data into warehouse
-
-    pass
+    load_data_into_warehouse(movies_output_df)
 
 
 if __name__ == "__main__":
