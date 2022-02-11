@@ -5,11 +5,25 @@ Utility functions for ETL job of mflix.
 import os
 from dotenv import load_dotenv
 from pymongo import MongoClient
-# from pyspark.sql import SparkSession
+from pyspark.sql import SparkSession
 
 
 def get_spark_session(dev_mode, app_name):
-    pass   
+    if dev_mode == 'DEV':
+        spark = SparkSession. \
+            builder. \
+            master('local'). \
+            appName(app_name). \
+            getOrCreate()
+        return spark
+    elif dev_mode == 'PROD':
+        spark = SparkSession. \
+            builder. \
+            master('yarn'). \
+            appName(app_name). \
+            getOrCreate()
+        return spark
+    return
 
 def mongodb_env_dict():
     load_dotenv()
@@ -29,9 +43,3 @@ def connect_with_mongodb():
     mongo_client = MongoClient(mongo_uri)
     
     return mongo_client
-
-
-if __name__ == "__main__":
-    client = connect_with_mongodb()
-    for name in client.list_database_names():
-        print(name)
