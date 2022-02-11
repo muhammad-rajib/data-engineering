@@ -44,10 +44,7 @@ def connect_with_mongodb():
     password = cred_dict['password']
     db_name = cred_dict['db_name']
 
-    mongo_uri = f"mongodb+srv://{cred_dict['user']}:{cred_dict['password']}" \
-                + "@mflix-cluster.buei4.mongodb.net/" \
-                + "{db_name}?retryWrites=true&w=majority"
-
+    mongo_uri = f"mongodb+srv://{user}:{password}@mflix-cluster.buei4.mongodb.net/{db_name}?retryWrites=true&w=majority"
     mongo_client = MongoClient(mongo_uri)
     
     return mongo_client
