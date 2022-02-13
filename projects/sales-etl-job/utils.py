@@ -30,12 +30,22 @@ def get_spark_session():
         return spark
     return
 
+def redshift_env_dict():
+    load_dotenv()
+    return {
+        'endpoint'  : os.getenv('redshift_endpoint'),
+        'user'      : os.getenv('redshift_user'),
+        'password'  : os.getenv('redshift_password'),
+        'port'      : os.getenv('redshift_port'),
+        'table_name': os.getenv('redshift_table_name')
+    }
+
 def mongodb_env_dict():
     load_dotenv()
     return {
-        'user' : os.getenv('mongodb_user'),
-        'password' : os.getenv('mongodb_password'),
-        'db_name' : os.getenv('mongodb_name')
+        'user'      : os.getenv('mongodb_user'),
+        'password'  : os.getenv('mongodb_password'),
+        'db_name'   : os.getenv('mongodb_name')
     }
 
 def connect_with_mongodb():
