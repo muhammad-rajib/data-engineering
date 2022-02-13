@@ -56,7 +56,6 @@ def transform_sales_data(spark, data_list):
 
     # create dataframe from rdd
     sales_df = spark.createDataFrame(sales_rdd, schema)
-    print(sales_df.printSchema())
     
     # add new 'Total Amount($)' Column into DataFrame
     sales_df = sales_df.withColumn("Total Amount($)", sales_df.Price * sales_df.Quantity)
