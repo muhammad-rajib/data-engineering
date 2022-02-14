@@ -42,10 +42,11 @@ def redshift_env_dict():
         'user'      : os.getenv('redshift_user'),
         'password'  : os.getenv('redshift_password'),
         'port'      : os.getenv('redshift_port'),
-        'db_name': os.getenv('redshift_db_name')
+        'db_name'   : os.getenv('redshift_db_name'),
+        'table_name': os.getenv('redshift_db_table_name')
     }
 
-def mongodb_env_dict():
+def mongodb_connection_env_dict():
     """
     function: return dictionary wrapped with mongodb credentials.
     :credentials are loaded from .env file.
@@ -58,52 +59,40 @@ def mongodb_env_dict():
         'host'      : os.getenv('mongodb_host_address')
     }
 
-def mongodb_env_dict2():
+def get_spark_session(spark_cred):
     """
-    function: return dictionary wrapped with mongodb credentials.
-    :credentials are loaded from .env file.
-    """
-    load_dotenv()
-    return {
-        'db_name'   : os.getenv('mongodb_name'),
-        'table_name': os.getenv('mongodb_table_name')
-    }
+    Create spark session.
 
-def get_spark_session():
+    :param --> spark_cred: credentials wrapped with dictionary.
+    :return newly created spark-session.
     """
-    function: return newly created spark session.
-    :required informations are loaded from .env file.
-    """
-    cred_dict = spark_session_env_dict() 
-    dev_mode = cred_dict['mode']
-    app_name = cred_dict['app_name']
-
-    if dev_mode == 'DEV':
+    if spark_cred['mode'] == 'DEV':
         spark = SparkSession. \
             builder. \
             master('local'). \
-            appName(app_name). \
+            appName(spark_cred['mode']). \
             getOrCreate()
         return spark
-    elif dev_mode == 'PROD':
+    elif spark_cred['mode'] == 'PROD':
         spark = SparkSession. \
             builder. \
             master('yarn'). \
-            appName(app_name). \
+            appName(spark_cred['app_name']). \
             getOrCreate()
         return spark
     return
 
-def connect_with_mongodb():
+def connect_with_mongodb(mongodb_cred):
     """
-    function: return dictionary wrapped with aws s3 credentials.
-    :required informations are loaded from .env file by functions.
+    Connect with MongoDB Cluster.
+
+    :param --> mongodb_cred: credentials wrapped with dictionary.
+    :return mongodb connection obejct
     """
-    cred_dict = mongodb_env_dict()
-    user = cred_dict['user']
-    password = cred_dict['password']
-    db_name = cred_dict['db_name']
-    db_host = cred_dict['host']
+    user        = mongodb_cred['user']
+    password    = mongodb_cred['password']
+    db_name     = mongodb_cred['db_name']
+    db_host     = mongodb_cred['host']
 
     mongo_uri = f"mongodb+srv://{user}:{password}{db_host}{db_name}?retryWrites=true&w=majority"
     mongo_client = MongoClient(mongo_uri)
