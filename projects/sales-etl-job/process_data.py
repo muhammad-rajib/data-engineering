@@ -9,7 +9,12 @@ from pyspark.sql.functions import when
 
 
 def make_tuple_list(data_list):
+    """
+    create tuple from sales data dictionary.
 
+    :param --> data_list: list container of sales data dictionaries. 
+    :return tuples of sales data wrapped with list.
+    """
     sales_data_list = []
 
     for data in data_list:
@@ -34,8 +39,14 @@ def make_tuple_list(data_list):
 
 
 def transform_sales_data(spark, data_list):
+    """
+    Process sales data using pyspark.
 
-    # make data tuple list
+    :param1 --> spark: spark context
+    :param2 --> data_list: list container of sales data dictionaries. 
+    :return spark dataframe of processed sales data.
+    """
+    # make list of tuples of sales data
     data_list = make_tuple_list(data_list)
     
     # create a schema for the dataframe
