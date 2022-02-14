@@ -3,8 +3,12 @@ Process sales data for analytics.
 """
 # import libraries
 from datetime import datetime
-from pyspark.sql.types import (StructField, StructType, StringType, 
-                                IntegerType, DateType, FloatType)
+from pyspark.sql.types import (StructField, 
+                                StructType, 
+                                StringType, 
+                                IntegerType, 
+                                DateType, 
+                                FloatType)
 from pyspark.sql.functions import when
 
 
