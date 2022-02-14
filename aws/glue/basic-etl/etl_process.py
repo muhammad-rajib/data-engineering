@@ -19,7 +19,7 @@ session = glue_context.spark_session
 # parameters
 glue_db = "virtual"
 glue_tbl = "input"
-s3_write_path = "s3://testglue8521/output"
+s3_write_path = "your_s3_bucket"
 
 ########################
 ### EXTRACT (READ DATA)
