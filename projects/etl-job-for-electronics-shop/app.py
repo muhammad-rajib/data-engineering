@@ -40,16 +40,17 @@ def main():
 
     # convert pyspark dataframe to pandas dataframe
     sales_pd_df = sales_df.toPandas()
+    print(sales_pd_df.head())
 
     # s3 credentials from .env file
-    s3_cred = s3_env_dict()
+    # s3_cred = s3_env_dict()
     # load data into s3 bucket
-    load_data_into_s3_bucket(sales_pd_df, s3_cred)
+    # load_data_into_s3_bucket(sales_pd_df, s3_cred)
 
     # redshift credentials from .env file
-    redshift_cred = redshift_env_dict()
+    # redshift_cred = redshift_env_dict()
     # load data into redshift data-warehouse
-    load_data_s3_to_redshift(s3_cred, redshift_cred)
+    # load_data_s3_to_redshift(s3_cred, redshift_cred)
 
 
 if __name__ == "__main__":
